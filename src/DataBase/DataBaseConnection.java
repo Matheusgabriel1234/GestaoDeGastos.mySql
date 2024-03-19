@@ -8,7 +8,7 @@ public class DataBaseConnection {
 
 	public Connection getConnection() {
 		try {
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/bankbd","root","Telepa33.");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/bankdb","root","Telepa33.");
 			
 		}catch(SQLException e) {
 			System.out.println("Banco não conectado");
