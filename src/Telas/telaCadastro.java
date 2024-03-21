@@ -28,7 +28,6 @@ public class telaCadastro extends JFrame {
 	private JTextField txtUsername;
 	private JTextField txtEmail;
 	private JPasswordField txtPassword;
-	private JPasswordField txtConfirm;
 
 	/**
 	 * Launch the application.
@@ -67,41 +66,32 @@ public class telaCadastro extends JFrame {
         
         JLabel lblNewLabel = new JLabel("Usuario");
         lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-        lblNewLabel.setBounds(44, 49, 131, 24);
+        lblNewLabel.setBounds(44, 119, 131, 24);
         contentPane.add(lblNewLabel);
         
         JLabel lblEmail = new JLabel("Email:");
         lblEmail.setFont(new Font("Arial", Font.PLAIN, 20));
-        lblEmail.setBounds(44, 147, 131, 24);
+        lblEmail.setBounds(44, 190, 131, 24);
         contentPane.add(lblEmail);
         
         txtUsername = new JTextField();
-        txtUsername.setBounds(44, 83, 268, 24);
+        txtUsername.setBounds(44, 153, 268, 24);
         contentPane.add(txtUsername);
         txtUsername.setColumns(10);
         
         txtEmail = new JTextField();
         txtEmail.setColumns(10);
-        txtEmail.setBounds(44, 181, 268, 24);
+        txtEmail.setBounds(44, 239, 268, 24);
         contentPane.add(txtEmail);
         
         JLabel lblSenha = new JLabel("Senha:");
         lblSenha.setFont(new Font("Arial", Font.PLAIN, 20));
-        lblSenha.setBounds(44, 236, 131, 24);
+        lblSenha.setBounds(44, 302, 131, 24);
         contentPane.add(lblSenha);
         
         txtPassword = new JPasswordField();
-        txtPassword.setBounds(44, 278, 268, 24);
+        txtPassword.setBounds(44, 336, 268, 24);
         contentPane.add(txtPassword);
-        
-        JLabel lblConfirmeASenha = new JLabel("Confirme a senha:");
-        lblConfirmeASenha.setFont(new Font("Arial", Font.PLAIN, 20));
-        lblConfirmeASenha.setBounds(44, 328, 197, 24);
-        contentPane.add(lblConfirmeASenha);
-        
-        txtConfirm = new JPasswordField();
-        txtConfirm.setBounds(44, 362, 268, 24);
-        contentPane.add(txtConfirm);
         
         JButton btnNewButton = new JButton("Cadastrar");
         btnNewButton.setBackground(UIManager.getColor("InternalFrame.activeTitleGradient"));
@@ -113,30 +103,17 @@ public class telaCadastro extends JFrame {
         		du.setUsername(txtUsername.getText());
         		du.setEmail(txtEmail.getText());
         		String password = new String(txtPassword.getPassword());
-        		String confirmPassword = new String(txtConfirm.getPassword());
-        		du.setPassword(password);
-        		
-        		try {
-        		    if (!password.equals(confirmPassword)) {
-        		     System.out.println("Senha e confirmação de senha não coincidem.");
-        		     Exception err;
-        		    } else {
-        		     du.setPassword(password);
-        		        }
-        		} catch (Exception e2) {
-        			JOptionPane.showMessageDialog(null, "As senhas não são semelhantes");
-        		    e2.printStackTrace();
-        		}
-        		
+        	    du.setPassword(password);
         		Operations ops = new Operations();
         		ops.Cadastro(du);
-
+        		
+        				
         		
         		
         		
         	}
         });
-        btnNewButton.setBounds(499, 356, 164, 35);
+        btnNewButton.setBounds(477, 326, 164, 35);
         contentPane.add(btnNewButton);
 	}
 }

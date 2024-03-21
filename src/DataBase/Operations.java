@@ -2,6 +2,7 @@ package DataBase;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -33,5 +34,22 @@ public void Cadastro(DadosUsers obj) {
 		e.printStackTrace();
 	
 	}
+}
+
+public boolean autenticar(String username,String email,String password) {
+	try {
+		String aut = "SELECT * FROM  tabela_users WHERE username = ? AND email = ? AND password = ?";
+		PreparedStatement ps = conexao.prepareStatement(aut);
+		ps.setString(1, username);
+		ps.setString(2, email);
+		ps.setString(3, password);
+		ResultSet rs = ps.executeQuery();
+		return  rs.next();
+		
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return false;
 }
 }
