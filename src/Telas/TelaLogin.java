@@ -113,6 +113,8 @@ public class TelaLogin {
 			                txtErro.setForeground(Color.RED);
 			            }else {
 			            JOptionPane.showMessageDialog(null, "Consta no banco de dados");
+			            TelaPrincipal tp = new TelaPrincipal();
+			            tp.setVisible(true);
 			            }
 			            } catch(Exception err) {
 			          
