@@ -11,13 +11,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTable tabelaDados;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -40,35 +43,36 @@ public class TelaPrincipal extends JFrame {
 	 */
 	public TelaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 872, 693);
+		setBounds(100, 100, 820, 611);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 54, 615, 28);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 143, 615, 503);
+		scrollPane.setBounds(10, 136, 620, 432);
 		contentPane.add(scrollPane);
 		
-		tabelaDados = new JTable();
-		tabelaDados.setModel(new DefaultTableModel(
+		table = new JTable();
+		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Username", "Idade", "Telefone", "Saldo"
+				"Emitido", "Categoria", "Valor", "M\u00E9todo", "Receita ou despesa"
 			}
 		));
-		scrollPane.setViewportView(tabelaDados);
+		scrollPane.setViewportView(table);
 		
-		JLabel lblNewLabel = new JLabel("Pesquise o nome de usúario para pesquisar");
+		textField = new JTextField();
+		textField.setBounds(10, 68, 620, 32);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Digite algo para pesquisar:");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblNewLabel.setBounds(10, 16, 447, 28);
+		lblNewLabel.setBounds(10, 33, 461, 24);
 		contentPane.add(lblNewLabel);
 	}
 }

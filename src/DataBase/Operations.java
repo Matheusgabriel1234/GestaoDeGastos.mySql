@@ -52,4 +52,29 @@ public boolean autenticar(String username,String email,String password) {
 	
 	return false;
 }
+
+public void CadastroGestao(DadosGestao obj) {
+	try {
+		String insert = "INSERT INTO tabela_gestao(id,emitido,categoria,valor,metodo,receita)" + "VALUES(?,?,?,?,?,?)";
+		
+		PreparedStatement ps = conexao.prepareStatement(insert);
+		ps.setString(1, Integer.toString(obj.generateRandomId()));
+		ps.setString(2, obj.getEmitido());
+		ps.setString(3,obj.getCategoria());
+		ps.setString(4, Double.toString(obj.getValor()));
+		ps.setString(5, obj.getMetodo());
+		ps.setString(6, obj.getReceita());
+		
+		ps.execute();
+		ps.close();
+		
+		
+	}catch(SQLException e) {
+	  
+		e.printStackTrace();
+	
+	}
+}
+
+
 }
