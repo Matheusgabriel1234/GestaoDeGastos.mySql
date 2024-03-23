@@ -1,26 +1,27 @@
 package Telas;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import DataBase.DadosGestao;
+import DataBase.Operations;
 
 public class TelaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTable table;
+	private JTable tabelaGestao;
 
 	/**
 	 * Launch the application.
@@ -54,16 +55,16 @@ public class TelaPrincipal extends JFrame {
 		scrollPane.setBounds(10, 136, 620, 432);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
-		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		table.setModel(new DefaultTableModel(
+		tabelaGestao = new JTable();
+		tabelaGestao.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tabelaGestao.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Emitido", "Categoria", "Valor", "M\u00E9todo", "Receita ou despesa"
 			}
 		));
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(tabelaGestao);
 		
 		textField = new JTextField();
 		textField.setBounds(10, 68, 620, 32);
@@ -74,5 +75,24 @@ public class TelaPrincipal extends JFrame {
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(10, 33, 461, 24);
 		contentPane.add(lblNewLabel);
+		carregar();
+	}
+	
+	public void carregar() {
+		Operations ops = new Operations();
+		List<DadosGestao> list = ops.listarGestao();
+		DefaultTableModel model = (DefaultTableModel) tabelaGestao.getModel();
+		
+		for(DadosGestao linha: list) {
+			model.addRow(new Object[] {
+					linha.getEmitido(),
+					linha.getCategoria(),
+					linha.getValor(),
+					linha.getMetodo(),
+					linha.getReceita()
+					
+			});
+		}
+		
 	}
 }

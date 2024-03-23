@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -74,6 +76,32 @@ public void CadastroGestao(DadosGestao obj) {
 		e.printStackTrace();
 	
 	}
+}
+
+public List<DadosGestao> listarGestao(){
+	String infoSql = "select * from tabela_gestao";
+	List<DadosGestao> list = new ArrayList<>();
+	try {
+		PreparedStatement ps = conexao.prepareStatement(infoSql);
+		ResultSet result = ps.executeQuery();
+		
+		while(result.next()) {
+			DadosGestao dg = new DadosGestao();
+			dg.setEmitido(result.getString("emitido"));
+			dg.setCategoria(result.getString("categoria"));
+			dg.setValor(result.getDouble("valor"));
+			dg.setMetodo(result.getString("metodo"));
+		    dg.setReceita(result.getString("receita"));
+		    list.add(dg);
+		
+		}
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	} 
+	return list;
+	
+	
 }
 
 
