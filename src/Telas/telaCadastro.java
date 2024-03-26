@@ -118,4 +118,6 @@ public class telaCadastro extends JFrame {
         btnNewButton.setBounds(477, 326, 164, 35);
         contentPane.add(btnNewButton);
 	}
+	
+	
 }
